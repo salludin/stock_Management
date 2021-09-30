@@ -435,7 +435,11 @@ class Quotes extends MY_Controller
 			} else {
 				$_status = '<span class="label label-danger">'.$this->lang->line('xin_quote_dead').'</span>';
 			}
+			if ($session['warehouse_id'] == 'all'){
 			$combhr = $edit.$view.$delete;
+		}else{
+			$combhr = $view;
+		}
                $data[] = array(
 			   		$combhr,
                     $r->quote_id,

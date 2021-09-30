@@ -346,7 +346,11 @@ class Purchase extends MY_Controller
 			  $edit = '<span data-toggle="tooltip" data-placement="top" title="'.$this->lang->line('xin_edit').'"><a href="'.site_url().'admin/purchase/edit/'.$r->purchase_id.'/"><button type="button" class="btn icon-btn btn-xs btn-default waves-effect waves-light"><span class="fa fa-pencil"></span></button></a></span>';
 			$delete = '<span data-toggle="tooltip" data-placement="top" title="'.$this->lang->line('xin_delete').'"><button type="button" class="btn icon-btn btn-xs btn-danger waves-effect waves-light delete" data-toggle="modal" data-target=".delete-modal" data-record-id="'. $r->purchase_id . '"><span class="fa fa-trash"></span></button></span>';
 			$view = '<span data-toggle="tooltip" data-placement="top" title="'.$this->lang->line('xin_view').'"><a href="'.site_url().'admin/purchase/view/'.$r->purchase_id.'/"><button type="button" class="btn icon-btn btn-xs btn-default waves-effect waves-light""><span class="fa fa-arrow-circle-right"></span></button></a></span>';
+			if ($session['warehouse_id'] == 'all'){
 			$combhr = $edit.$view.$delete;
+		}else{
+			$combhr = $view;
+		}
                $data[] = array(
                		$purchase_date,
                     $cname,

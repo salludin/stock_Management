@@ -616,7 +616,11 @@ class Orders extends MY_Controller
 			} else {
 				$status = '<span class="label label-info">'.$this->lang->line('xin_acc_inv_cancelled').'</span>';
 			}
+			if ($session['warehouse_id'] == 'all'){
 			$combhr = $edit.$view.$delete;
+		}else{
+			$combhr = $view;
+		}
                $data[] = array(
 			   		$combhr,
 					$invoice_number,

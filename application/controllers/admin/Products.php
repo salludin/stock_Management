@@ -93,10 +93,10 @@ class Products extends MY_Controller {
 				$pp_amount = $this->Xin_model->currency_sign($r->purchase_price);
 				$exp_date =  $this->Xin_model->set_date_format($r->expiration_date);
 				
-				if ($session['warehouse_id'] !== 'all'){
+				if ($session['warehouse_id'] == 'all'){
 						$action = '<span data-toggle="tooltip" data-placement="top" title="'.$this->lang->line('xin_edit').'"><button type="button" class="btn btn-default btn-xs m-b-0-0 waves-effect waves-light"  data-toggle="modal" data-target=".edit-modal-data"  data-product_id="'. $r->product_id . '"><i class="fa fa-pencil-square-o"></i></button></span><span data-toggle="tooltip" data-placement="top" title="'.$this->lang->line('xin_acc_view_product').'"><button type="button" class="btn btn-default btn-xs m-b-0-0 waves-effect waves-light" data-toggle="modal" data-target=".view-modal-data" data-product_id="'. $r->product_id . '"><i class="fa fa-eye"></i></button></span><span data-toggle="tooltip" data-placement="top" title="'.$this->lang->line('xin_delete').'"><button type="button" class="btn btn-danger btn-xs m-b-0-0 waves-effect waves-light delete" data-toggle="modal" data-target=".delete-modal" data-record-id="'. $r->product_id . '"><i class="fa fa-trash-o"></i></button></span>';
 					}else{
-						$action = '';
+						$action = '<span data-toggle="tooltip" data-placement="top" title="'.$this->lang->line('xin_acc_view_product').'"><button type="button" class="btn btn-default btn-xs m-b-0-0 waves-effect waves-light" data-toggle="modal" data-target=".view-modal-data" data-product_id="'. $r->product_id . '"><i class="fa fa-eye"></i></button></span>';
 					}
 				
 	
