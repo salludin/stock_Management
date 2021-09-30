@@ -45,7 +45,7 @@
           </div>
           <!-- info row -->
           <div class="row invoice-info">
-            <div class="col-sm-4 invoice-col"> <?php echo $this->lang->line('xin_acc_from');?>
+            <div class="col-sm-4 invoice-col"> Lokasi Penyimpanan
               <address>
               <strong><?php echo $company_name;?></strong><br>
               <?php echo $company_address;?><br>
@@ -56,13 +56,9 @@
               </address>
             </div>
             <!-- /.col -->
-            <div class="col-sm-4 invoice-col"> <?php echo $this->lang->line('xin_acc_from');?>
+            <div class="col-sm-4 invoice-col"> Vendor Produksi
               <address>
               <strong><?php echo $client_name;?></strong><br>
-              <?php echo $client_address_1.' '.$client_address_2;?><br>
-              <?php echo $client_city.', '.$client_country[0]->country_name;?><br>
-              <?php echo $this->lang->line('xin_phone');?>: <?php echo $client_contact_number;?><br>
-              <?php echo $this->lang->line('dashboard_email');?>: <?php echo $client_email;?>
               </address>
             </div>
             <!-- /.col -->
