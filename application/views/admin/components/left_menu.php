@@ -147,28 +147,28 @@ if(!is_null($role_user)){
           <?php if(in_array('15',$role_resources_ids)) { ?>
           <li class="sidenav-link <?php if(!empty($arr_mod['hr_invoices_active']))echo $arr_mod['hr_invoices_active'];?>">
             <a href="<?php echo site_url('admin/orders/');?>">
-              <i class="fa <?php echo $submenuicon;?>"></i> <?php echo $this->lang->line('xin_acc_manage_order');?>
+              <i class="fa <?php echo $submenuicon;?>"></i> Daftar Invoice
             </a>
           </li>
           <?php } ?>
           <?php if(in_array('16',$role_resources_ids)) { ?>
           <li class="sidenav-link <?php if(!empty($arr_mod['hr_invoices_create']))echo $arr_mod['hr_invoices_create'];?>">
             <a href="<?php echo site_url('admin/orders/create/');?>">
-              <i class="fa <?php echo $submenuicon;?>"></i> <?php echo $this->lang->line('xin_acc_add_order');?>
+              <i class="fa <?php echo $submenuicon;?>"></i> Buat Invoice
             </a>
           </li>
           <?php } ?>
           <?php if(in_array('17',$role_resources_ids)) { ?>
           <li class="sidenav-link <?php if(!empty($arr_mod['hr_quotes_active']))echo $arr_mod['hr_quotes_active'];?>">
             <a href="<?php echo site_url('admin/quotes/');?>">
-              <i class="fa <?php echo $submenuicon;?>"></i> <?php echo $this->lang->line('xin_acc_quotes_order');?>
+              <i class="fa <?php echo $submenuicon;?>"></i> Daftar Pengiriman
             </a>
           </li>
           <?php } ?>
           <?php if(in_array('18',$role_resources_ids)) { ?>
           <li class="sidenav-link <?php if(!empty($arr_mod['hr_quotes_create']))echo $arr_mod['hr_quotes_create'];?>">
             <a href="<?php echo site_url('admin/quotes/create');?>">
-              <i class="fa <?php echo $submenuicon;?>"></i> <?php echo $this->lang->line('xin_acc_add_order_quote');?>
+              <i class="fa <?php echo $submenuicon;?>"></i> Tambah Pengiriman
             </a>
           </li>
           <?php } ?>
