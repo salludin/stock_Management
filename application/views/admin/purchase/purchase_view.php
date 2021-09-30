@@ -29,7 +29,6 @@
     <div class="btn-group pull-right" role="group" style="margin-top:2px"> <a href="<?php echo site_url('admin/purchase/preview/'.$purchase_id);?>" class="btn btn-flickr btn-sm" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> <?php echo $this->lang->line('xin_acc_inv_preview');?>
       <div class="ripple-wrapper"></div>
       </a> <a href="<?php echo site_url('admin/purchase/edit/'.$purchase_id);?>" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <?php echo $this->lang->line('xin_edit');?></a>
-      <button type="button" id="print-invoice" class="btn btn-vk btn-sm print-invoice"><i class="fa fa-print" aria-hidden="true"></i> <?php echo $this->lang->line('xin_print');?></button>
     </div>
     </small> </div>
   <!-- /.col quote_number--> 
