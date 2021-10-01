@@ -56,6 +56,12 @@ $system_setting = $this->Xin_model->read_setting_info(1);
                       <input class="form-control" placeholder="<?php echo $this->lang->line('xin_inv_prefix');?>" name="prefix" type="text" value="">
                     </div>
                   </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="prefix">Penerima</label>
+                      <input class="form-control" placeholder="Penerima" name="receipt_name" type="text" value="">
+                    </div>
+                  </div>                  
                 </div>
                 <hr>
                 <div class="row">
