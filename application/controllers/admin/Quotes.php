@@ -213,6 +213,7 @@ class Quotes extends MY_Controller
 			'customer_id' => $customer[0]->customer_id,
 			'quote_date' => $quote_info[0]->quote_date,
 			'quote_due_date' => $quote_info[0]->quote_due_date,
+			'receipt_name' => $quote_info[0]->receipt_name,
 			'sub_total_amount' => $quote_info[0]->sub_total_amount,
 			'discount_type' => $quote_info[0]->discount_type,
 			'discount_figure' => $quote_info[0]->discount_figure,
@@ -655,6 +656,7 @@ class Quotes extends MY_Controller
 		$data = array(
 		'sub_total_amount' => $this->input->post('items_sub_total'),
 		'total_tax' => $this->input->post('items_tax_total'),
+		'quote_due_date' => $this->input->post('quote_due_date'),
 		'discount_type' => $this->input->post('discount_type'),
 		'discount_figure' => $this->input->post('discount_figure'),
 		'total_discount' => $this->input->post('discount_amount'),
