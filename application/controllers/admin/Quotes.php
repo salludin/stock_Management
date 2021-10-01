@@ -415,7 +415,8 @@ class Quotes extends MY_Controller
 					$cname = '--';	
 				}
 			  $quote_date = '<i class="far fa-calendar-alt position-left"></i> '.$this->Xin_model->set_date_format($r->quote_date);
-			  if(!is_null($r->quote_due_date)){
+			  $quote_due_datee = $r->quote_due_date;
+			  if($quote_due_datee !== ''){
 			  $quote_due_date = '<i class="far fa-calendar-alt position-left"></i> '.$this->Xin_model->set_date_format($r->quote_due_date);
 			}else{
 				$quote_due_date = '';

@@ -20,11 +20,11 @@
           <tr>
             <th><?php echo $this->lang->line('xin_action');?></th>
             <th><?php echo $this->lang->line('xin_employees_id');?></th>
-            <th><?php echo $this->lang->line('xin_quote_no');?></th>
+            <th>Nomor Pengiriman</th>
             <th><?php echo $this->lang->line('xin_customer');?></th>
             <th><?php echo $this->lang->line('xin_acc_total');?></th>
-            <th><?php echo $this->lang->line('xin_quote_date');?></th>
-            <th><?php echo $this->lang->line('xin_invoice_due_date');?></th>
+            <th>Tanggal Pengiriman</th>
+            <th>Tanggal Diterima</th>
             <th><?php echo $this->lang->line('dashboard_xin_status');?></th>
           </tr>
         </thead>

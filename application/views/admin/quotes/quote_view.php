@@ -89,10 +89,11 @@
           </address>
         </div>
         <!-- /.col -->
-        <div class="col-sm-4 invoice-col"> <b><?php echo $this->lang->line('xin_quote_no');?> <?php echo $quote_number;?></b><br>
+        <div class="col-sm-4 invoice-col"> <b>Nomor Pengiriman <?php echo $quote_number;?></b><br>
           <br>
-          <b><?php echo $this->lang->line('xin_createdp');?>:</b> <?php echo $this->Xin_model->set_date_format($quote_date);?><br>
-          <b><?php echo $this->lang->line('xin_invoice_due_date');?>:</b> <?php echo $this->Xin_model->set_date_format($quote_due_date);?>
+          <b>Tanggal Pengiriman:</b> <?php echo $this->Xin_model->set_date_format($quote_date);?><br>
+          <b>Tanggal Diterima:</b><?php f($quote_due_date !== ''){ ?> <?php echo $this->Xin_model->set_date_format($quote_due_date);?> <?php } ?><br>
+          <b>Penerima:</b> <?php echo $receipt_name;?><br>
           <div class="invoice-status">
             <?php
 		if($status == 0){
