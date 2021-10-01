@@ -9,7 +9,7 @@ $system_setting = $this->Xin_model->read_setting_info(1);
   <div class="col-md-12">
     <div class="box">
       <div class="box-header with-border">
-        <h3 class="box-title"> <?php echo $this->lang->line('xin_quote_create');?> </h3>
+        <h3 class="box-title"> Buat Pengiriman </h3>
       </div>
       <div class="box-body" aria-expanded="true" style="">
         <div class="row m-b-1">
@@ -22,7 +22,7 @@ $system_setting = $this->Xin_model->read_setting_info(1);
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="invoice_date"><?php echo $this->lang->line('xin_quote_number');?></label>
+                      <label for="invoice_date">Nomor Pengiriman</label>
                       <input class="form-control" placeholder="<?php echo $this->lang->line('xin_quote_number');?>" name="quote_number" type="text" value="">
                     </div>
                   </div>
@@ -40,13 +40,13 @@ $system_setting = $this->Xin_model->read_setting_info(1);
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="invoice_date"><?php echo $this->lang->line('xin_quote_date');?></label>
+                      <label for="invoice_date">Tanggal Pengiriman</label>
                       <input class="form-control date" placeholder="<?php echo $this->lang->line('xin_quote_date');?>" readonly="readonly" name="quote_date" type="text" value="">
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="invoice_due_date"><?php echo $this->lang->line('xin_invoice_due_date');?></label>
+                      <label for="invoice_due_date">Tanggal Diterima</label>
                       <input class="form-control date" placeholder="<?php echo $this->lang->line('xin_invoice_due_date');?>" readonly="readonly" name="quote_due_date" type="text" value="">
                     </div>
                   </div>
@@ -75,7 +75,7 @@ $system_setting = $this->Xin_model->read_setting_info(1);
                                   <?php } ?>
                                 </select>
                               </div>
-                              <div class="form-group mb-1 col-sm-12 col-md-2">
+                              <div class="form-group mb-1 col-sm-12 col-md-1">
                                 <label for="tax_type"><?php echo $this->lang->line('xin_invoice_tax_type');?></label>
                                 <br>
                                 <select class="form-control tax_type" name="tax_type[]" id="tax_type">
@@ -99,15 +99,25 @@ $system_setting = $this->Xin_model->read_setting_info(1);
                               <div class="form-group mb-1 col-sm-12 col-md-1">
                                 <label for="qty_hrs" class="cursor-pointer"><?php echo $this->lang->line('xin_acc_item_qtyhrs');?></label>
                                 <br>
-                                <input type="text" class="form-control qty_hrs" name="qty_hrs[]" id="qty_hrs" value="1">
+                                <input type="text" class="form-control" name="qty_hrs[]" id="qty_hrs" value="1">
                               </div>
+                              <div class="form-group mb-1 col-sm-12 col-md-1">
+                                <label for="qty_hrs" class="cursor-pointer">Koli</label>
+                                <br>
+                                <input type="text" class="form-control" name="koli[]" id="qty_hrs" value="1">
+                              </div>
+                              <div class="form-group mb-1 col-sm-12 col-md-1">
+                                <label for="qty_hrs" class="cursor-pointer">KG</label>
+                                <br>
+                                <input type="text" class="form-control qty_hrs" name="kg[]" id="qty_hrs" value="1">
+                              </div>                              
                               <div class="skin skin-flat form-group mb-1 col-sm-12 col-md-2">
-                                <label for="unit_price"><?php echo $this->lang->line('xin_acc_unit_price');?></label>
+                                <label for="unit_price">Harga</label>
                                 <br>
                                 <input class="form-control unit_price" type="text" name="unit_price[]" value="0" id="unit_price" />
                               </div>
                               <div class="form-group mb-1 col-sm-12 col-md-2">
-                                <label for="profession"><?php echo $this->lang->line('xin_acc_subtotal');?></label>
+                                <label for="profession">Total Harga</label>
                                 <input type="text" class="form-control sub-total-item" readonly="readonly" name="sub_total_item[]" value="0" />
                                 <!-- <br>-->
                                 <p style="display:none" class="form-control-static"><span class="amount-html">0</span></p>
