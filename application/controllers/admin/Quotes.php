@@ -415,7 +415,11 @@ class Quotes extends MY_Controller
 					$cname = '--';	
 				}
 			  $quote_date = '<i class="far fa-calendar-alt position-left"></i> '.$this->Xin_model->set_date_format($r->quote_date);
+			  if(!is_null($r->quote_due_date)){
 			  $quote_due_date = '<i class="far fa-calendar-alt position-left"></i> '.$this->Xin_model->set_date_format($r->quote_due_date);
+			}else{
+				$quote_due_date = '';
+			}
 			  //invoice_number
 			  $quote_number = '';
 			  $quote_number = '<a href="'.site_url().'admin/quotes/view/'.$r->quote_id.'/">'.$r->quote_number.'</a>';
