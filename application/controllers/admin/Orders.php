@@ -779,6 +779,10 @@ class Orders extends MY_Controller
 			$Return['error'] = $this->lang->line('xin_acc_order_duedate_field');
 		} else if($this->input->post('unit_price')==='') {
 			$Return['error'] = $this->lang->line('xin_acc_unitp_field');
+		} else if($this->input->post('koli')==='') {
+			$Return['error'] = 'Koli harus di isi';
+		} else if($this->input->post('kg')==='') {
+			$Return['error'] = 'KG harus di isi';
 		}
 		
 		if($Return['error']!=''){
@@ -841,6 +845,10 @@ class Orders extends MY_Controller
 				// item price
 				$unit_price = $this->input->post('unit_price');
 				$price = $unit_price[$key]; 
+				$unit_koli = $this->input->post('koli');
+				$koli = $unit_koli[$key]; 
+				$unit_kg = $this->input->post('kg');
+				$kg = $unit_kg[$key]; 
 				// item tax_id
 				$taxt = $this->input->post('tax_type');
 				$tax_type = $taxt[$key]; 
@@ -858,6 +866,8 @@ class Orders extends MY_Controller
 				'item_id' => $iname,
 				'item_name' => $pmodel[0]->product_name,
 				'item_qty' => $qtyhrs,
+				'koli' => $koli,
+				'kg' => $kg,
 				'item_unit_price' => $price,
 				'item_tax_type' => $tax_type,
 				'item_tax_rate' => $tax_rate,
