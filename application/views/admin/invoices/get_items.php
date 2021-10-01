@@ -17,7 +17,7 @@ $(document).ready(function(){
       <?php } ?>
     </select>
   </div>
-  <div class="form-group mb-1 col-sm-12 col-md-2">
+  <div class="form-group mb-1 col-sm-12 col-md-1">
     <label for="tax_type"><?php echo $this->lang->line('xin_invoice_tax_type');?></label>
     <br>
     <select class="form-control tax_type" name="tax_type[]" id="tax_type">
@@ -39,11 +39,21 @@ $(document).ready(function(){
     <input type="text" readonly="readonly" class="form-control tax-rate-item" name="tax_rate_item[]" value="0" />
   </div>
   <div class="form-group mb-1 col-sm-12 col-md-1">
-    <label for="qty_hrs" class="cursor-pointer"><?php echo $this->lang->line('xin_acc_item_qtyhrs');?></label>
+    <label for="qty_hrs" class="cursor-pointer">Jumlah</label>
     <br>
-    <input type="text" class="form-control qty_hrs" name="qty_hrs[]" id="qty_hrs" value="1">
+    <input type="text" class="form-control" name="qty_hrs[]" id="qty_hrs" value="1">
   </div>
-  <div class="skin skin-flat form-group mb-1 col-sm-12 col-md-2">
+    <div class="form-group mb-1 col-sm-12 col-md-1">
+    <label for="qty_hrs" class="cursor-pointer">Koli</label>
+    <br>
+    <input type="text" class="form-control" name="koli[]" id="qty_hrs" value="1">
+  </div>
+    <div class="form-group mb-1 col-sm-12 col-md-1">
+    <label for="qty_hrs" class="cursor-pointer">KG</label>
+    <br>
+    <input type="text" class="form-control qty_hrs" name="kg[]" id="qty_hrs" value="1">
+  </div>
+  <div class="skin skin-flat form-group mb-1 col-sm-12 col-md-1">
     <label for="unit_price"><?php echo $this->lang->line('xin_acc_unit_price');?></label>
     <br>
     <input class="form-control unit_price" type="text" name="unit_price[]" value="0" id="unit_price" />

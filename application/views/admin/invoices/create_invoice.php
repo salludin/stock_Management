@@ -75,7 +75,7 @@ $system_setting = $this->Xin_model->read_setting_info(1);
                                 <?php } ?>
                               </select>
                               </div>
-                              <div class="form-group mb-1 col-sm-12 col-md-2">
+                              <div class="form-group mb-1 col-sm-12 col-md-1">
                                 <label for="tax_type"><?php echo $this->lang->line('xin_invoice_tax_type');?></label>
                                 <br>
                                 <select class="form-control tax_type" name="tax_type[]" id="tax_type">
@@ -111,7 +111,7 @@ $system_setting = $this->Xin_model->read_setting_info(1);
                                 <br>
                                 <input type="text" class="form-control qty_hrs" name="kg[]" id="qty_hrs" value="1">
                               </div>
-                              <div class="skin skin-flat form-group mb-1 col-sm-12 col-md-2">
+                              <div class="skin skin-flat form-group mb-1 col-sm-12 col-md-1">
                                 <label for="unit_price">Harga</label>
                                 <br>
                                 <input class="form-control unit_price" type="text" name="unit_price[]" value="0" id="unit_price" />
