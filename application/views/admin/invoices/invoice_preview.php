@@ -114,7 +114,8 @@
                   <tr>
                     <th class="py-3"> # </th>
                     <th class="py-3"> <?php echo $this->lang->line('xin_acc_item');?> </th>
-                    <th class="py-3"> <?php echo $this->lang->line('xin_acc_tax_rate');?> </th>
+                    <th class="py-3"> Koli </th>
+                    <th class="py-3"> KG </th>
                     <th class="py-3"> <?php echo $this->lang->line('xin_acc_item_qtyhrs');?> </th>
                     <th class="py-3"> <?php echo $this->lang->line('xin_acc_unit_price');?> </th>
                     <th class="py-3"> <?php echo $this->lang->line('xin_acc_subtotal');?> </th>
@@ -129,7 +130,8 @@
                   <tr>
                     <td class="py-3"><div class="font-weight-semibold"><?php echo $i;?></div></td>
                     <td class="py-3" style="width:"><div class="font-weight-semibold"><?php echo $_item->item_name;?></div></td>
-                    <td class="py-3"><?php echo $this->Xin_model->currency_sign($_item->item_tax_rate);?></td>
+                    <td class="py-3"><?php echo $this->Xin_model->currency_sign($_item->koli);?></td>
+                    <td class="py-3"><?php echo $this->Xin_model->currency_sign($_item->kg);?></td>
                     <td class="py-3"><?php echo $_item->item_qty;?></td>
                     <td class="py-3"><?php echo $this->Xin_model->currency_sign($_item->item_unit_price);?></td>
                     <td class="py-3"><?php echo $this->Xin_model->currency_sign($_item->item_sub_total);?></td>
