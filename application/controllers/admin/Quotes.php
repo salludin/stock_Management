@@ -137,6 +137,10 @@ class Quotes extends MY_Controller
 			'path_url' => 'create_hrsale_quotation',
 			'quote_id' => $quote_info[0]->quote_id,
 			'prefix' => $quote_info[0]->prefix,
+			'receipt_name' => $quote_info[0]->receipt_name,
+			'koli' => $quote_info[0]->koli,
+			'kg' => $quote_info[0]->kg,
+			'harga' => $quote_info[0]->harga,
 			'quote_number' => $quote_info[0]->quote_number,
 			'customer_id' => $customer[0]->customer_id,
 			'quote_date' => $quote_info[0]->quote_date,
@@ -282,6 +286,7 @@ class Quotes extends MY_Controller
 			'customer_id' => $customer[0]->customer_id,
 			'quote_date' => $quote_info[0]->quote_date,
 			'status' => $quote_info[0]->status,
+			'receipt_name' => $quote_info[0]->receipt_name,
 			'quote_due_date' => $quote_info[0]->quote_due_date,
 			'sub_total_amount' => $quote_info[0]->sub_total_amount,
 			'discount_type' => $quote_info[0]->discount_type,
@@ -335,6 +340,9 @@ class Quotes extends MY_Controller
 		'invoice_date' => $quote_info[0]->quote_date,
 		'invoice_due_date' => $quote_info[0]->quote_due_date,
 		'prefix' => $quote_info[0]->prefix,
+		'kg' => $quote_info[0]->kg,
+		'koli' => $quote_info[0]->koli,
+		'harga' => $quote_info[0]->harga,
 		'sub_total_amount' => $quote_info[0]->sub_total_amount,
 		'total_tax' => $quote_info[0]->total_tax,
 		'discount_type' => $quote_info[0]->discount_type,
@@ -524,6 +532,9 @@ class Quotes extends MY_Controller
 		'quote_number' => $this->input->post('quote_number'),
 		'quote_date' => $this->input->post('quote_date'),
 		'quote_due_date' => $this->input->post('quote_due_date'),
+		'koli' => $this->input->post('koli'),
+		'kg' => $this->input->post('kg'),
+		'harga' => $this->input->post('unit_price'),
 		'prefix' => $this->input->post('prefix'),
 		'sub_total_amount' => $this->input->post('items_sub_total'),
 		'total_tax' => $this->input->post('items_tax_total'),
@@ -550,21 +561,11 @@ class Quotes extends MY_Controller
 				$qty = $this->input->post('qty_hrs');
 				$qtyhrs = $qty[$key]; 
 				// item price
-				$unit_price = $this->input->post('unit_price');
-				$price = $unit_price[$key]; 
-				$unit_koli = $this->input->post('koli');
-				$koli = $unit_koli[$key];
-				$unit_kg = $this->input->post('kg');
-				$kg = $unit_kg[$key];  
+
 				// item tax_id
-				$taxt = $this->input->post('tax_type');
-				$tax_type = $taxt[$key]; 
 				// item tax_rate
-				$tax_rate_item = $this->input->post('tax_rate_item');
-				$tax_rate = $tax_rate_item[$key];
 				// item sub_total
 				$sub_total_item = $this->input->post('sub_total_item');
-				$item_sub_total = $sub_total_item[$key];
 				// add values  
 				$pmodel = $this->Products_model->read_product_information($iname);
 				$data2 = array(
@@ -573,12 +574,6 @@ class Quotes extends MY_Controller
 				'item_id' => $iname,
 				'item_name' => $pmodel[0]->product_name,
 				'item_qty' => $qtyhrs,
-				'koli' => $koli,
-				'kg' => $kg,
-				'item_unit_price' => $price,
-				'item_tax_type' => $tax_type,
-				'item_tax_rate' => $tax_rate,
-				'item_sub_total' => $item_sub_total,
 				'sub_total_amount' => $this->input->post('items_sub_total'),
 				'total_tax' => $this->input->post('items_tax_total'),
 				'discount_type' => $this->input->post('discount_type'),
@@ -619,17 +614,9 @@ class Quotes extends MY_Controller
 			$qty = $this->input->post('eqty_hrs');
 			$qtyhrs = $qty[$key_val]; 
 			// item price
-			$unit_price = $this->input->post('eunit_price');
-			$price = $unit_price[$key_val]; 
 			// item tax_id
-			$taxt = $this->input->post('etax_type');
-			$tax_type = $taxt[$key_val]; 
 			// item tax_rate
-			$tax_rate_item = $this->input->post('etax_rate_item');
-			$tax_rate = $tax_rate_item[$key_val];
 			// item sub_total
-			$sub_total_item = $this->input->post('esub_total_item');
-			$item_sub_total = $sub_total_item[$key_val];
 			
 			// update item values  
 			$pmodel = $this->Products_model->read_product_information($iname);
@@ -637,10 +624,6 @@ class Quotes extends MY_Controller
 				'item_id' => $iname,
 				'item_name' => $pmodel[0]->product_name,
 				'item_qty' => $qtyhrs,
-				'item_unit_price' => $price,
-				'item_tax_type' => $tax_type,
-				'item_tax_rate' => $tax_rate,
-				'item_sub_total' => $item_sub_total,
 				'sub_total_amount' => $this->input->post('items_sub_total'),
 				'total_tax' => $this->input->post('items_tax_total'),
 				'discount_type' => $this->input->post('discount_type'),
@@ -654,9 +637,13 @@ class Quotes extends MY_Controller
 		
 		////
 		$data = array(
+		'receipt_name' => $this->input->post('receipt_name'),
 		'sub_total_amount' => $this->input->post('items_sub_total'),
 		'total_tax' => $this->input->post('items_tax_total'),
 		'quote_due_date' => $this->input->post('quote_due_date'),
+		'koli' => $this->input->post('koli'),
+		'kg' => $this->input->post('kg'),
+		'harga' => $this->input->post('unit_price'),
 		'discount_type' => $this->input->post('discount_type'),
 		'discount_figure' => $this->input->post('discount_figure'),
 		'total_discount' => $this->input->post('discount_amount'),

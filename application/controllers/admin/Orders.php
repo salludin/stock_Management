@@ -410,6 +410,9 @@ class Orders extends MY_Controller
 			'path_url' => 'create_hrsale_invoice',
 			'invoice_id' => $invoice_info[0]->invoice_id,
 			'prefix' => $invoice_info[0]->prefix,
+			'kg' => $invoice_info[0]->kg,
+			'koli' => $invoice_info[0]->koli,
+			'harga' => $invoice_info[0]->harga,
 			'invoice_number' => $invoice_info[0]->invoice_number,
 			'customer_id' => $customer[0]->customer_id,
 			'invoice_date' => $invoice_info[0]->invoice_date,
@@ -537,6 +540,9 @@ class Orders extends MY_Controller
 			'path_url' => 'create_hrsale_invoice',
 			'invoice_id' => $invoice_info[0]->invoice_id,
 			'prefix' => $invoice_info[0]->prefix,
+			'kg' => $invoice_info[0]->kg,
+			'koli' => $invoice_info[0]->koli,
+			'harga' => $invoice_info[0]->harga,
 			'invoice_number' => $invoice_info[0]->invoice_number,
 			'customer_id' => $customer[0]->customer_id,
 			'invoice_date' => $invoice_info[0]->invoice_date,
@@ -929,27 +935,15 @@ class Orders extends MY_Controller
 			$qty = $this->input->post('eqty_hrs');
 			$qtyhrs = $qty[$key_val]; 
 			// item price
-			$unit_price = $this->input->post('eunit_price');
-			$price = $unit_price[$key_val]; 
 			// item tax_id
-			$taxt = $this->input->post('etax_type');
-			$tax_type = $taxt[$key_val]; 
 			// item tax_rate
-			$tax_rate_item = $this->input->post('etax_rate_item');
-			$tax_rate = $tax_rate_item[$key_val];
 			// item sub_total
-			$sub_total_item = $this->input->post('esub_total_item');
-			$item_sub_total = $sub_total_item[$key_val];
 			$pmodel = $this->Products_model->read_product_information($iname);
 			// update item values  
 			$data = array(
 				'item_id' => $iname,
 				'item_name' => $pmodel[0]->product_name,
 				'item_qty' => $qtyhrs,
-				'item_unit_price' => $price,
-				'item_tax_type' => $tax_type,
-				'item_tax_rate' => $tax_rate,
-				'item_sub_total' => $item_sub_total,
 				'sub_total_amount' => $this->input->post('items_sub_total'),
 				'total_tax' => $this->input->post('items_tax_total'),
 				'discount_type' => $this->input->post('discount_type'),
@@ -963,6 +957,9 @@ class Orders extends MY_Controller
 		
 		////
 		$data = array(
+		'koli' => $this->input->post('koli'),
+		'kg' => $this->input->post('kg'),
+		'harga' => $this->input->post('unit_price'),
 		'sub_total_amount' => $this->input->post('items_sub_total'),
 		'total_tax' => $this->input->post('items_tax_total'),
 		'discount_type' => $this->input->post('discount_type'),

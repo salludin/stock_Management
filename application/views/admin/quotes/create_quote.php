@@ -19,7 +19,7 @@ $system_setting = $this->Xin_model->read_setting_info(1);
             <?php echo form_open('admin/quotes/create_new_quote', $attributes, $hidden);?>
             <div class="bg-white">
               <div class="box-block">
-                <div class="row">
+                <div class="row item-row">
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="invoice_date">Nomor Pengiriman</label>
@@ -61,7 +61,50 @@ $system_setting = $this->Xin_model->read_setting_info(1);
                       <label for="prefix">Penerima</label>
                       <input class="form-control" placeholder="Penerima" name="receipt_name" type="text" value="">
                     </div>
-                  </div>                  
+                  </div>
+                              <div class="form-group mb-1 col-sm-12 col-md-2">
+                                <label for="tax_type"><?php echo $this->lang->line('xin_invoice_tax_type');?></label>
+                                <br>
+                                <select class="form-control tax_type" name="tax_type" id="tax_type">
+                                  <?php foreach($all_taxes as $_tax){?>
+                                  <?php
+                    if($_tax->type=='percentage') {
+                      $_tax_type = $_tax->rate.'%';
+                    } else {
+                      $_tax_type = $this->Xin_model->currency_sign($_tax->rate);
+                    }
+                  ?>
+                                  <option tax-type="<?php echo $_tax->type;?>" tax-rate="<?php echo $_tax->rate;?>" value="<?php echo $_tax->tax_id;?>"> <?php echo $_tax->name;?> (<?php echo $_tax_type;?>)</option>
+                                  <?php } ?>
+                                </select>
+                              </div>
+                              <div class="form-group mb-1 col-sm-12 col-md-2">
+                                <label for="tax_type"><?php echo $this->lang->line('xin_acc_tax_rate');?></label>
+                                <br>
+                                <input type="text" readonly="readonly" class="form-control tax-rate-item" name="tax_rate_item" value="0" />
+                              </div>
+                              <div class="form-group mb-1 col-sm-12 col-md-2">
+                                <label for="qty_hrs" class="cursor-pointer">Koli</label>
+                                <br>
+                                <input type="text" class="form-control" name="koli" id="qty_hrs" value="1">
+                              </div>
+                              <div class="form-group mb-1 col-sm-12 col-md-2">
+                                <label for="qty_hrs" class="cursor-pointer">KG</label>
+                                <br>
+                                <input type="text" class="form-control qty_hrs" name="kg" id="qty_hrs" value="1">
+                              </div>                              
+                              <div class="skin skin-flat form-group mb-1 col-sm-12 col-md-2">
+                                <label for="unit_price">Harga</label>
+                                <br>
+                                <input class="form-control unit_price" type="text" name="unit_price" value="0" id="unit_price" />
+                              </div>
+                              <div class="form-group mb-1 col-sm-12 col-md-2">
+                                <label for="profession">Total Harga</label>
+                                <input type="text" class="form-control sub-total-item" readonly="readonly" name="sub_total_item" value="0" />
+                                <!-- <br>-->
+                                <p style="display:none" class="form-control-static"><span class="amount-html">0</span></p>
+                              </div>
+                  </div>                                    
                 </div>
                 <hr>
                 <div class="row">
@@ -82,51 +125,9 @@ $system_setting = $this->Xin_model->read_setting_info(1);
                                 </select>
                               </div>
                               <div class="form-group mb-1 col-sm-12 col-md-1">
-                                <label for="tax_type"><?php echo $this->lang->line('xin_invoice_tax_type');?></label>
-                                <br>
-                                <select class="form-control tax_type" name="tax_type[]" id="tax_type">
-                                  <?php foreach($all_taxes as $_tax){?>
-                                  <?php
-										if($_tax->type=='percentage') {
-											$_tax_type = $_tax->rate.'%';
-										} else {
-											$_tax_type = $this->Xin_model->currency_sign($_tax->rate);
-										}
-									?>
-                                  <option tax-type="<?php echo $_tax->type;?>" tax-rate="<?php echo $_tax->rate;?>" value="<?php echo $_tax->tax_id;?>"> <?php echo $_tax->name;?> (<?php echo $_tax_type;?>)</option>
-                                  <?php } ?>
-                                </select>
-                              </div>
-                              <div class="form-group mb-1 col-sm-12 col-md-1">
-                                <label for="tax_type"><?php echo $this->lang->line('xin_acc_tax_rate');?></label>
-                                <br>
-                                <input type="text" readonly="readonly" class="form-control tax-rate-item" name="tax_rate_item[]" value="0" />
-                              </div>
-                              <div class="form-group mb-1 col-sm-12 col-md-1">
                                 <label for="qty_hrs" class="cursor-pointer"><?php echo $this->lang->line('xin_acc_item_qtyhrs');?></label>
                                 <br>
                                 <input type="text" class="form-control" name="qty_hrs[]" id="qty_hrs" value="1">
-                              </div>
-                              <div class="form-group mb-1 col-sm-12 col-md-1">
-                                <label for="qty_hrs" class="cursor-pointer">Koli</label>
-                                <br>
-                                <input type="text" class="form-control" name="koli[]" id="qty_hrs" value="1">
-                              </div>
-                              <div class="form-group mb-1 col-sm-12 col-md-1">
-                                <label for="qty_hrs" class="cursor-pointer">KG</label>
-                                <br>
-                                <input type="text" class="form-control qty_hrs" name="kg[]" id="qty_hrs" value="1">
-                              </div>                              
-                              <div class="skin skin-flat form-group mb-1 col-sm-12 col-md-2">
-                                <label for="unit_price">Harga</label>
-                                <br>
-                                <input class="form-control unit_price" type="text" name="unit_price[]" value="0" id="unit_price" />
-                              </div>
-                              <div class="form-group mb-1 col-sm-12 col-md-2">
-                                <label for="profession">Total Harga</label>
-                                <input type="text" class="form-control sub-total-item" readonly="readonly" name="sub_total_item[]" value="0" />
-                                <!-- <br>-->
-                                <p style="display:none" class="form-control-static"><span class="amount-html">0</span></p>
                               </div>
                               <div class="form-group col-sm-12 col-md-1 text-xs-center mt-2">
                                 <label for="profession">&nbsp;</label>

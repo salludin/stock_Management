@@ -74,6 +74,15 @@
                 <input class="form-control" placeholder="<?php echo $this->lang->line('xin_acc_default_0');?>" name="reorder_stock" type="number" value="">
               </div>
             </div>
+            <div class="col-md-3">
+              <div class='form-group'>
+                <fieldset class="form-group">
+                  <label for="apimage"><?php echo $this->lang->line('xin_acc_p_image');?></label>
+                  <input type="file" class="form-control-file" id="apimage" name="apimage">
+                  <small><?php echo $this->lang->line('xin_company_file_type');?></small>
+                </fieldset>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-actions box-footer">
@@ -86,10 +95,11 @@
 <div class="box <?php echo $get_animate;?>">
   <div class="box-header with-border">
     <h3 class="box-title"> <?php echo $this->lang->line('xin_list_all');?> <?php echo $this->lang->line('xin_products');?> </h3>
+    <input type="button" value="export" onclick="exportToExcel('xin_table')" />
   </div>
   <div class="box-body">
     <div class="box-datatable table-responsive">
-      <table class="datatables-demo table table-striped table-bordered" id="xin_table">
+      <table class="datatables-demo table table-striped table-bordered" id="xin_table" border="2">
         <thead>
           <tr>
             <th>Aksi</th>
@@ -99,9 +109,11 @@
             <th><?php echo $this->lang->line('xin_acc_qty');?></th>
             <th>Kategori</th>
             <th>Description</th>
+            <th>Gambar</th>
           </tr>
         </thead>
       </table>
     </div>
   </div>
 </div>
+<iframe id="txtArea1" style="display:none"></iframe>

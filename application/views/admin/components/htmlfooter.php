@@ -4,7 +4,32 @@
 <?php $system = $this->Xin_model->read_setting_info(1);?>
 <?php $theme = $this->Xin_model->read_theme_info(1);?>
 <?php $this->load->view('admin/components/vendors/del_dialog');?>
+<script type="text/javascript">
+function exportToExcel(tableId){
+	let tableData = document.getElementById(tableId).outerHTML;
+    //tableData = tableData.replace(/<img[^>]*>/gi,""); //enable thsi if u dont want images in your table
+	tableData = tableData.replace(/<A[^>]*>|<\/A>/g, ""); //remove if u want links in your table
+    tableData = tableData.replace(/<input[^>]*>|<\/input>/gi, ""); //remove input params
+     tableData = tableData.replace(/<td[^>]*>/gi,"<td style='height:160px; padding:5px'>"); //remove
 
+	tableData = tableData + '<br /><br />'
+
+	//click a hidden link to which will prompt for download.
+	let a = document.createElement('a')
+	let dataType = 'data:application/vnd.ms-excel';
+	a.href = `data:application/vnd.ms-excel, ${encodeURIComponent(tableData)}`
+	a.download = 'Laporan List produk_' + rand() + '.xls'
+	a.click()
+}
+function rand() {
+	let rand = Math.floor((Math.random().toFixed(2)*100))
+	let dateObj = new Date()
+	let dateTime = `${dateObj.getHours()}${dateObj.getMinutes()}${dateObj.getSeconds()}`
+
+	return `${dateTime}${rand}`
+}
+
+</script>
 <!-- jQuery 3 -->
 <script type="text/javascript" src="<?php echo base_url();?>skin/hrsale_assets/vendor/jquery/jquery-3.2.1.min.js"></script> 
 <script src="<?php echo base_url();?>skin/hrsale_assets/theme_assets/bower_components/jquery/dist/jquery.min.js"></script>

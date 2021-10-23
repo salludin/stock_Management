@@ -67,6 +67,19 @@ if(isset($_GET['jd']) && isset($_GET['product_id']) && $_GET['data']=='product')
                 <input class="form-control" placeholder="<?php echo $this->lang->line('xin_acc_default_0');?>" name="reorder_stock" type="number" value="<?php echo $reorder_stock;?>">
               </div>
             </div>
+            <div class="col-md-3">
+              <div class='form-group'>
+                <fieldset class="form-group">
+                  <label for="product_image"><?php echo $this->lang->line('xin_acc_p_image');?></label>
+                  <input type="file" class="form-control-file" id="pimage" name="pimage">
+                  <small><?php echo $this->lang->line('xin_company_file_type');?></small>
+                </fieldset>
+                <?php if($product_image!='' && $product_image!='no file') {?>
+                <br />
+                <img src="<?php echo base_url();?>uploads/products/<?php echo $product_image;?>" width="80" height="80" />
+                <?php } ?>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -161,24 +174,8 @@ if(isset($_GET['jd']) && isset($_GET['product_id']) && $_GET['data']=='product')
           <th><?php echo $this->lang->line('xin_acc_product_name');?></th>
           <td style="display: table-cell;"><?php echo $product_name;?></td>
         </tr>
-        <tr>
-          <th><?php echo $this->lang->line('xin_acc_barcode_type');?></th>
-          <td style="display: table-cell;"><?php if($barcode_type=='CODE39'){ $btype = 'CODE39'; }?>
-		  <?php if($barcode_type=='CODE93'){ $btype = 'CODE93'; }?>
-          <?php if($barcode_type=='CODE128'){ $btype = 'CODE128'; }?>
-          <?php if($barcode_type=='ISBN'){ $btype = 'ISBN'; }?>
-          <?php if($barcode_type=='CODABAR'){$btype = 'CODABAR'; }?>
-          <?php if($barcode_type=='POSTNET'){ $btype = 'POSTNET'; }?>
-          <?php if($barcode_type=='EAN-8'){ $btype = 'EAN-8'; }?>
-          <?php if($barcode_type=='EAN-13'){ $btype = 'EAN-13'; }?>
-          <?php if($barcode_type=='UPC-A'){ $btype = 'UPC-A'; }?>
-          <?php if($barcode_type=='UPC-E'){ $btype = 'UPC-E'; }?>
-          <?php echo $btype; ?></td>
-        </tr>
-        <tr>
-          <th><?php echo $this->lang->line('xin_acc_barcode');?></th>
-          <td style="display: table-cell;"><?php echo $barcode;?></td>
-        </tr>
+
+
         <tr>
           <th><?php echo $this->lang->line('xin_acc_warehouse');?></th>
           <td style="display: table-cell;"><?php foreach($all_warehouses as $warehouse) {?><?php if($warehouse_id==$warehouse->warehouse_id):?><?php echo $warehouse->warehouse_name;?><?php endif;?><?php } ?></td>
@@ -191,29 +188,10 @@ if(isset($_GET['jd']) && isset($_GET['product_id']) && $_GET['data']=='product')
           <th><?php echo $this->lang->line('xin_acc_product_sku');?></th>
           <td style="display: table-cell;"><?php echo $product_sku;?></td>
         </tr>
-        <tr>
-          <th><?php echo $this->lang->line('xin_acc_product_sku_no');?></th>
-          <td style="display: table-cell;"><?php echo $product_serial_number;?></td>
-        </tr>
-        <tr>
-          <th><?php echo $this->lang->line('xin_acc_product_p_price');?></th>
-          <td style="display: table-cell;"><?php echo $purchase_price;?></td>
-        </tr>
-        <tr>
-          <th><?php echo $this->lang->line('xin_acc_product_s_price');?></th>
-          <td style="display: table-cell;"><?php echo $retail_price;?></td>
-        </tr>
+
         <tr>
           <th><?php echo $this->lang->line('xin_acc_product_initial_qty');?></th>
           <td style="display: table-cell;"><?php echo $product_qty;?></td>
-        </tr>
-        <tr>
-          <th><?php echo $this->lang->line('xin_acc_restock_amount');?></th>
-          <td style="display: table-cell;"><?php echo $reorder_stock;?></td>
-        </tr>
-        <tr>
-          <th><?php echo $this->lang->line('xin_acc_exp_date');?></th>
-          <td style="display: table-cell;"><?php echo $expiration_date;?></td>
         </tr>
         <tr>
           <th><?php echo $this->lang->line('xin_acc_p_image');?></th>

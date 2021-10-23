@@ -74,11 +74,11 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'mysql:host=localhost;dbname=u1551651_adaptstock',
+	'dsn'	=> 'mysql:host=localhost;dbname=adaptstock',
 	'hostname' => "localhost",
-	'username' => "u1551651_root",
-	'password' => "sdmekspresindo",
-	'database' => "u1551651_adaptstock",
+	'username' => "root",
+	'password' => "",
+	'database' => "adaptstock",
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

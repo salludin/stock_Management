@@ -35,6 +35,7 @@
 <div class="row">
   <div class="col-xs-12"> &nbsp; <small class="pull-right">
     <div class="btn-group pull-right" role="group" style="margin-top:2px">
+    <?php if ($session['warehouse_id'] == 'all'){ ?>
       <div class="btn-group">
         <button type="button" class="btn btn-dropbox btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-check" aria-hidden="true"></i> <?php echo $this->lang->line('xin_acc_mark_as');?> <span class="caret"></span>
         <div class="ripple-wrapper"></div>
@@ -48,9 +49,15 @@
           <li><a href="<?php echo site_url('admin/quotes/mark_as/'.$quote_id.'/5');?>"><?php echo $this->lang->line('xin_quote_dead');?></a></li>
         </ul>
       </div>
-      <a href="<?php echo site_url('admin/quotes/convert_to_invoice/'.$quote_id);?>" class="btn btn-success btn-sm"><i class="fa fa-exchange" aria-hidden="true"></i> <?php echo $this->lang->line('xin_quote_convert_to_invoice');?> </a> <a href="<?php echo site_url('admin/quotes/preview/'.$quote_id);?>" class="btn btn-flickr btn-sm" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> <?php echo $this->lang->line('xin_acc_inv_preview');?>
+      
+      <a href="<?php echo site_url('admin/quotes/convert_to_invoice/'.$quote_id);?>" class="btn btn-success btn-sm"><i class="fa fa-exchange" aria-hidden="true"></i> <?php echo $this->lang->line('xin_quote_convert_to_invoice');?> </a>
+      <?php } ?>
+      <a href="<?php echo site_url('admin/quotes/preview/'.$quote_id);?>" class="btn btn-flickr btn-sm" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> <?php echo $this->lang->line('xin_acc_inv_preview');?>
       <div class="ripple-wrapper"></div>
-      </a> <a href="<?php echo site_url('admin/quotes/edit/'.$quote_id);?>" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <?php echo $this->lang->line('xin_edit');?></a>
+      </a>
+      <?php if ($session['warehouse_id'] == 'all'){ ?>
+      <a href="<?php echo site_url('admin/quotes/edit/'.$quote_id);?>" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <?php echo $this->lang->line('xin_edit');?></a>
+      <?php } ?>
       <button type="button" id="print-invoice" class="btn btn-vk btn-sm print-invoice"><i class="fa fa-print" aria-hidden="true"></i> <?php echo $this->lang->line('xin_print');?></button>
     </div>
     </small> </div>
@@ -125,10 +132,7 @@
               <tr>
                 <th class="py-3"> # </th>
                 <th class="py-3"> <?php echo $this->lang->line('xin_acc_item');?> </th>
-                <th class="py-3"> <?php echo $this->lang->line('xin_acc_tax_rate');?> </th>
-                <th class="py-3"> <?php echo $this->lang->line('xin_acc_item_qtyhrs');?> </th>
-                <th class="py-3"> <?php echo $this->lang->line('xin_acc_unit_price');?> </th>
-                <th class="py-3"> <?php echo $this->lang->line('xin_acc_subtotal');?> </th>
+                <th class="py-3"> Jumlah </th>
               </tr>
             </thead>
             <tbody>
@@ -136,14 +140,11 @@
         $ar_sc = explode('- ',$system_setting[0]->default_currency_symbol);
         $sc_show = $ar_sc[1];
         ?>
-              <?php $prod = array(); $i=1; foreach($this->Quotes_model->get_quote_items($quote_id) as $_item):?>
+              <?php $prod = array(); $i=0; foreach($this->Quotes_model->get_quote_items($quote_id) as $_item): $i++ ?>
               <tr>
                 <td class="py-3"><div class="font-weight-semibold"><?php echo $i;?></div></td>
                 <td class="py-3" style="width:"><div class="font-weight-semibold"><?php echo $_item->item_name;?></div></td>
-                <td class="py-3"><?php echo $this->Xin_model->currency_sign($_item->item_tax_rate);?></td>
                 <td class="py-3"><?php echo $_item->item_qty;?></td>
-                <td class="py-3"><?php echo $this->Xin_model->currency_sign($_item->item_unit_price);?></td>
-                <td class="py-3"><?php echo $this->Xin_model->currency_sign($_item->item_sub_total);?></td>
               </tr>
               <?php endforeach;?>
             </tbody>
@@ -160,30 +161,7 @@
           <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;"> <?php echo $quote_note;?> </p>
           <?php endif;?>
         </div>
-        <div class="col-lg-5">
-          <div class="table-responsive">
-            <table class="table">
-              <tbody>
-                <tr>
-                  <th style="width:50%"><?php echo $this->lang->line('xin_acc_subtotal');?>:</th>
-                  <td><?php echo $this->Xin_model->currency_sign($sub_total_amount);?></td>
-                </tr>
-                <tr>
-                  <th><?php echo $this->lang->line('xin_acc_tax_item');?></th>
-                  <td><?php echo $this->Xin_model->currency_sign($total_tax);?></td>
-                </tr>
-                <tr>
-                  <th><?php echo $this->lang->line('xin_acc_discount');?>:</th>
-                  <td><?php echo $this->Xin_model->currency_sign($total_discount);?></td>
-                </tr>
-                <tr>
-                  <th><?php echo $this->lang->line('xin_acc_total');?>:</th>
-                  <td><?php echo $this->Xin_model->currency_sign($grand_total);?></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+
         <!-- /.col --> 
       </div>
     </div>

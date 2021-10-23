@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://sdmekspresindo.co.id/'; 
+$config['base_url'] = 'http://localhost/adaptstock/'; 
 // change this url to your desired url.
 //NOTE:  >>> Put url like http://hr.yourdomain.com/ or http://yourdomain.com/hr/ and access the system like http://yourdomain.com/hr/admin/
 

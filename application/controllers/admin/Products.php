@@ -88,7 +88,7 @@ class Products extends MY_Controller {
 				$category = $this->Products_model->read_category_info($r->category_id);
 				// get warehouse
 				$warehouse = $this->Warehouses_model->read_warehouse_info($r->warehouse_id);
-				
+				$image = '<img height="100" width="100" src="https://sdmekspresindo.co.id/uploads/products/'.$r->product_image.'">';
 				$pr_amount = $this->Xin_model->currency_sign($r->retail_price);
 				$pp_amount = $this->Xin_model->currency_sign($r->purchase_price);
 				$exp_date =  $this->Xin_model->set_date_format($r->expiration_date);
@@ -107,7 +107,8 @@ class Products extends MY_Controller {
 						$warehouse[0]->warehouse_name,
 						$r->product_qty,
 						$category[0]->name,
-						$r->product_description
+						$r->product_description,
+						$image
 				   );
 			  }
 		  } // in stock
@@ -467,7 +468,30 @@ class Products extends MY_Controller {
 		}else if($this->input->post('product_qty')==='') {
 			$Return['error'] = $this->lang->line('xin_acc_product_qty_field_error');
 		} 	
- 
+ 		/* Check if file uploaded..*/
+		else if($_FILES['apimage']['size'] == 0) {
+			$fname = '';
+		} else {
+			if(is_uploaded_file($_FILES['apimage']['tmp_name'])) {
+				//checking image type
+				$allowed =  array('png','jpg','jpeg','gif');
+				$filename = $_FILES['apimage']['name'];
+				$ext = pathinfo($filename, PATHINFO_EXTENSION);
+				
+				if(in_array($ext,$allowed)){
+					$tmp_name = $_FILES["apimage"]["tmp_name"];
+					$img_path = "uploads/products/";
+					// basename() may prevent filesystem traversal attacks;
+					// further validation/sanitation of the filename may be appropriate
+					$lname = basename($_FILES["apimage"]["name"]);
+					$newfilename = 'image_'.round(microtime(true)).'.'.$ext;
+					move_uploaded_file($tmp_name, $img_path.$newfilename);
+					$fname = $newfilename;
+				} else {
+					$Return['error'] = $this->lang->line('xin_error_attatchment_type');
+				}
+			}
+		}
 		if($Return['error']!=''){
        		$this->output($Return);
     	}
@@ -481,6 +505,7 @@ class Products extends MY_Controller {
 		'product_qty' => $this->input->post('product_qty'),
 		'reorder_stock' => $this->input->post('reorder_stock'),
 		'added_by' => $this->input->post('user_id'),
+		'product_image' => $fname,
 		'created_at' => date('d-m-Y h:i:s'),
 		'status' => '1'
 		);
@@ -599,8 +624,7 @@ class Products extends MY_Controller {
 			$Return['error'] = $this->lang->line('xin_acc_category_feild_error');
 		} else if($this->input->post('product_qty')==='') {
 			$Return['error'] = $this->lang->line('xin_acc_product_qty_field_error');
-		}
-
+		} else if($_FILES['pimage']['size'] == 0) {
 			$no_logo_data = array(
 			'product_name' => $this->input->post('product_name'),
 			'warehouse_id' => $this->input->post('warehouse'),
@@ -609,6 +633,40 @@ class Products extends MY_Controller {
 			'reorder_stock' => $this->input->post('reorder_stock')
 			);
 			$result = $this->Products_model->update_record($no_logo_data,$id);
+		} else {
+			if(is_uploaded_file($_FILES['pimage']['tmp_name'])) {
+				//checking image type
+				$allowed =  array('png','jpg','jpeg','gif');
+				$filename = $_FILES['pimage']['name'];
+				$ext = pathinfo($filename, PATHINFO_EXTENSION);
+				
+				if(in_array($ext,$allowed)){
+					$tmp_name = $_FILES["pimage"]["tmp_name"];
+					$img_path = "uploads/products/";
+					// basename() may prevent filesystem traversal attacks;
+					// further validation/sanitation of the filename may be appropriate
+					$lname = basename($_FILES["pimage"]["name"]);
+					$newfilename = 'image_'.round(microtime(true)).'.'.$ext;
+					move_uploaded_file($tmp_name, $img_path.$newfilename);
+					$fname = $newfilename;
+					
+					$data = array(
+					'product_name' => $this->input->post('product_name'),
+					'warehouse_id' => $this->input->post('warehouse'),
+					'category_id' => $this->input->post('category'),
+					'product_description' => $qt_description,
+					'reorder_stock' => $this->input->post('reorder_stock'),
+					'product_image' => $fname
+					);
+					// update record > model
+					$result = $this->Products_model->update_record($data,$id);
+				} else {
+					$Return['error'] = $this->lang->line('xin_error_attatchment_type');
+				}
+			}
+		}	
+
+
 			
 		if($Return['error']!=''){
        		$this->output($Return);

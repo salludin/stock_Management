@@ -72,10 +72,11 @@
               </address>
             </div>
             <!-- /.col -->
-            <div class="col-sm-4 invoice-col"> <b><?php echo $this->lang->line('xin_quote_no');?> <?php echo $prefix.' '.$quote_number;?></b><br>
+            <div class="col-sm-4 invoice-col"> <b>Nomor Pengiriman : <?php echo $prefix.' '.$quote_number;?></b><br>
               <br>
-              <b><?php echo $this->lang->line('xin_createdp');?>:</b> <?php echo $this->Xin_model->set_date_format($quote_date);?><br>
-              <b><?php echo $this->lang->line('xin_invoice_due_date');?>:</b> <?php echo $this->Xin_model->set_date_format($quote_due_date);?>
+              <b>Tanggal Pengiriman:</b> <?php echo $this->Xin_model->set_date_format($quote_date);?><br>
+              <b>Tanggal Diterima:</b><?php if($quote_due_date !== ''){ ?> <?php echo $this->Xin_model->set_date_format($quote_due_date);?> <?php } ?><br>
+          <b>Penerima:</b> <?php echo $receipt_name;?><br>
               <div class="invoice-status">
                 <?php
 				if($status == 0){
@@ -107,10 +108,7 @@
                   <tr>
                     <th class="py-3"> # </th>
                     <th class="py-3"> <?php echo $this->lang->line('xin_acc_item');?> </th>
-                    <th class="py-3"> <?php echo $this->lang->line('xin_acc_tax_rate');?> </th>
-                    <th class="py-3"> <?php echo $this->lang->line('xin_acc_item_qtyhrs');?> </th>
-                    <th class="py-3"> <?php echo $this->lang->line('xin_acc_unit_price');?> </th>
-                    <th class="py-3"> <?php echo $this->lang->line('xin_acc_subtotal');?> </th>
+                    <th class="py-3"> Jumlah </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -118,14 +116,11 @@
 				$ar_sc = explode('- ',$system_setting[0]->default_currency_symbol);
 				$sc_show = $ar_sc[1];
 				?>
-                  <?php $prod = array(); $i=1; foreach($this->Quotes_model->get_quote_items($quote_id) as $_item):?>
+                  <?php $prod = array(); $i=0; foreach($this->Quotes_model->get_quote_items($quote_id) as $_item): $i++ ?>
                   <tr>
                     <td class="py-3"><div class="font-weight-semibold"><?php echo $i;?></div></td>
                     <td class="py-3" style="width:"><div class="font-weight-semibold"><?php echo $_item->item_name;?></div></td>
-                    <td class="py-3"><?php echo $this->Xin_model->currency_sign($_item->item_tax_rate);?></td>
                     <td class="py-3"><?php echo $_item->item_qty;?></td>
-                    <td class="py-3"><?php echo $this->Xin_model->currency_sign($_item->item_unit_price);?></td>
-                    <td class="py-3"><?php echo $this->Xin_model->currency_sign($_item->item_sub_total);?></td>
                   </tr>
                   <?php endforeach;?>
                 </tbody>
@@ -141,30 +136,6 @@
               <?php if($quote_note!=''):?>
               <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;"> <?php echo $quote_note;?> </p>
               <?php endif;?>
-            </div>
-            <div class="col-lg-5">
-              <div class="table-responsive" style="background: #dce9f9;">
-                <table class="table">
-                  <tbody>
-                    <tr>
-                      <th style="width:50%"><?php echo $this->lang->line('xin_acc_subtotal');?>:</th>
-                      <td><?php echo $this->Xin_model->currency_sign($sub_total_amount);?></td>
-                    </tr>
-                    <tr>
-                      <th><?php echo $this->lang->line('xin_acc_tax_item');?></th>
-                      <td><?php echo $this->Xin_model->currency_sign($total_tax);?></td>
-                    </tr>
-                    <tr>
-                      <th><?php echo $this->lang->line('xin_acc_discount');?>:</th>
-                      <td><?php echo $this->Xin_model->currency_sign($total_discount);?></td>
-                    </tr>
-                    <tr>
-                      <th><?php echo $this->lang->line('xin_acc_total');?>:</th>
-                      <td><?php echo $this->Xin_model->currency_sign($grand_total);?></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
             </div>
             <!-- /.col --> 
           </div>
