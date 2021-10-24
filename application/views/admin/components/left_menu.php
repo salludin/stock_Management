@@ -152,11 +152,11 @@ if(!is_null($role_user)){
           </li>
           <?php } ?>
           <?php if(in_array('16',$role_resources_ids)) { ?>
-          <li class="sidenav-link <?php if(!empty($arr_mod['hr_invoices_create']))echo $arr_mod['hr_invoices_create'];?>">
+          <!-- <li class="sidenav-link <?php if(!empty($arr_mod['hr_invoices_create']))echo $arr_mod['hr_invoices_create'];?>">
             <a href="<?php echo site_url('admin/orders/create/');?>">
               <i class="fa <?php echo $submenuicon;?>"></i> Buat Invoice
             </a>
-          </li>
+          </li> -->
           <?php } ?>
           <?php if(in_array('17',$role_resources_ids)) { ?>
           <li class="sidenav-link <?php if(!empty($arr_mod['hr_quotes_active']))echo $arr_mod['hr_quotes_active'];?>">
