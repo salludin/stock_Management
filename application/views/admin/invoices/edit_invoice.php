@@ -113,25 +113,15 @@ $system_setting = $this->Xin_model->read_setting_info(1);
                             <?php $prod = array(); foreach($this->Invoices_model->get_invoice_items($invoice_id) as $_item):?>
                             <div class="row item-row">
                               <div class="form-group mb-1 col-sm-12 col-md-3">
-                                <input type="hidden" name="item[<?php echo $_item->invoice_item_id;?>]" value="<?php echo $_item->invoice_item_id;?>" />
                                 <label for="item_name"><?php echo $this->lang->line('xin_acc_item');?></label>
+                                <input  class="form-control" readonly="readonly" name="item[<?php echo $_item->invoice_item_id;?>]" value="<?php echo $_item->item_name;?>" />
                                 <br>
-                                <select class="form-control item_name" name="eitem_name[<?php echo $_item->invoice_item_id;?>]" id="item_name" data-plugin="select_hrm" data-placeholder="<?php echo $this->lang->line('xin_select');?>">
-                                  <option value=""></option>
-                                  <?php foreach($all_items as $_iitem) {?>
-                                  <option value="<?php echo $_iitem->product_id?>" <?php if($_iitem->product_id==$_item->item_id):?> selected="selected"<?php endif;?> item-price="<?php echo $_iitem->retail_price?>"><?php echo $_iitem->product_name?></option>
-                                  <?php } ?>
-                                </select>
+
                               </div>
                               <div class="form-group mb-1 col-sm-12 col-md-1">
                                 <label for="qty_hrs" class="cursor-pointer"><?php echo $this->lang->line('xin_acc_item_qtyhrs');?></label>
                                 <br>
-                                <input type="text" class="form-control qty_hrs" name="eqty_hrs[<?php echo $_item->invoice_item_id;?>]" id="qty_hrs" value="<?php echo $_item->item_qty;?>">
-                              </div>
-                              <div class="form-group col-sm-12 col-md-1 text-xs-center mt-2">
-                                <label for="profession">&nbsp;</label>
-                                <br>
-                                <button type="button" class="btn icon-btn btn-xs btn-danger waves-effect waves-light eremove-item" data-repeater-delete="" data-record-id="<?php echo $_item->invoice_item_id;?>" data-invoice-id="<?php echo $invoice_id;?>"> <span class="fa fa-trash"></span></button>
+                                <input type="text" readonly="readonly" class="form-control qty_hrs" name="eqty_hrs[<?php echo $_item->invoice_item_id;?>]" id="qty_hrs" value="<?php echo $_item->item_qty;?>">
                               </div>
                             </div>
                             <?php endforeach;?>
@@ -139,11 +129,11 @@ $system_setting = $this->Xin_model->read_setting_info(1);
                         </div>
                       </div>
                       <div id="item-list"></div>
-                      <div class="form-group overflow-hidden1">
+<!--                       <div class="form-group overflow-hidden1">
                         <div class="col-xs-12">
                           <button type="button" data-repeater-create="" class="btn btn-primary" id="add-invoice-item"> <i class="fa fa-plus"></i> <?php echo $this->lang->line('xin_acc_add_item');?></button>
                         </div>
-                      </div>
+                      </div> -->
                       <?php
 						$ar_sc = explode('- ',$system_setting[0]->default_currency_symbol);
 						$sc_show = $ar_sc[1];

@@ -929,21 +929,21 @@ class Orders extends MY_Controller
 			
 			/* get items info */
 			// item qty
-			$item_name = $this->input->post('eitem_name');
-			$iname = $item_name[$key_val]; 
-			// item qty
-			$qty = $this->input->post('eqty_hrs');
-			$qtyhrs = $qty[$key_val]; 
-			// item price
-			// item tax_id
-			// item tax_rate
-			// item sub_total
-			$pmodel = $this->Products_model->read_product_information($iname);
+			// $item_name = $this->input->post('eitem_name');
+			// $iname = $item_name[$key_val]; 
+			// // item qty
+			// $qty = $this->input->post('eqty_hrs');
+			// $qtyhrs = $qty[$key_val]; 
+			// // item price
+			// // item tax_id
+			// // item tax_rate
+			// // item sub_total
+			// $pmodel = $this->Products_model->read_product_information($iname);
 			// update item values  
 			$data = array(
-				'item_id' => $iname,
-				'item_name' => $pmodel[0]->product_name,
-				'item_qty' => $qtyhrs,
+				// 'item_id' => $iname,
+				// 'item_name' => $pmodel[0]->product_name,
+				// 'item_qty' => $qtyhrs,
 				'sub_total_amount' => $this->input->post('items_sub_total'),
 				'total_tax' => $this->input->post('items_tax_total'),
 				'discount_type' => $this->input->post('discount_type'),
@@ -971,54 +971,54 @@ class Orders extends MY_Controller
 		$result = $this->Invoices_model->update_invoice_record($data,$id);
 	
 
-		if($this->input->post('item_name')) {
-			$key=0;
-			foreach($this->input->post('item_name') as $items){
+		// if($this->input->post('item_name')) {
+		// 	$key=0;
+		// 	foreach($this->input->post('item_name') as $items){
 
-				/* get items info */
-				// item name
-				$item_name = $this->input->post('item_name');
-				$iname = $item_name[$key]; 
-				// item qty
-				$qty = $this->input->post('qty_hrs');
-				$qtyhrs = $qty[$key]; 
-				// item price
-				$unit_price = $this->input->post('unit_price');
-				$price = $unit_price[$key]; 
-				// item tax_id
-				$taxt = $this->input->post('tax_type');
-				$tax_type = $taxt[$key]; 
-				// item tax_rate
-				$tax_rate_item = $this->input->post('tax_rate_item');
-				$tax_rate = $tax_rate_item[$key];
-				// item sub_total
-				$sub_total_item = $this->input->post('sub_total_item');
-				$item_sub_total = $sub_total_item[$key];
-				// add values  
-				$data2 = array(
-				'invoice_id' => $id,
-				'customer_id' => $this->input->post('customer_id'),
-				'item_name' => $iname,
-				'item_qty' => $qtyhrs,
-				'item_unit_price' => $price,
-				'item_tax_type' => $tax_type,
-				'item_tax_rate' => $tax_rate,
-				'item_sub_total' => $item_sub_total,
-				'sub_total_amount' => $this->input->post('items_sub_total'),
-				'total_tax' => $this->input->post('items_tax_total'),
-				'discount_type' => $this->input->post('discount_type'),
-				'discount_figure' => $this->input->post('discount_figure'),
-				'total_discount' => $this->input->post('discount_amount'),
-				'grand_total' => $this->input->post('fgrand_total'),
-				'created_at' => date('d-m-Y H:i:s')
-				);
-				$result_item = $this->Invoices_model->add_invoice_items_record($data2);
+		// 		/* get items info */
+		// 		// item name
+		// 		$item_name = $this->input->post('item_name');
+		// 		$iname = $item_name[$key]; 
+		// 		// item qty
+		// 		$qty = $this->input->post('qty_hrs');
+		// 		$qtyhrs = $qty[$key]; 
+		// 		// item price
+		// 		$unit_price = $this->input->post('unit_price');
+		// 		$price = $unit_price[$key]; 
+		// 		// item tax_id
+		// 		$taxt = $this->input->post('tax_type');
+		// 		$tax_type = $taxt[$key]; 
+		// 		// item tax_rate
+		// 		$tax_rate_item = $this->input->post('tax_rate_item');
+		// 		$tax_rate = $tax_rate_item[$key];
+		// 		// item sub_total
+		// 		$sub_total_item = $this->input->post('sub_total_item');
+		// 		$item_sub_total = $sub_total_item[$key];
+		// 		// add values  
+		// 		$data2 = array(
+		// 		'invoice_id' => $id,
+		// 		'customer_id' => $this->input->post('customer_id'),
+		// 		'item_name' => $iname,
+		// 		'item_qty' => $qtyhrs,
+		// 		'item_unit_price' => $price,
+		// 		'item_tax_type' => $tax_type,
+		// 		'item_tax_rate' => $tax_rate,
+		// 		'item_sub_total' => $item_sub_total,
+		// 		'sub_total_amount' => $this->input->post('items_sub_total'),
+		// 		'total_tax' => $this->input->post('items_tax_total'),
+		// 		'discount_type' => $this->input->post('discount_type'),
+		// 		'discount_figure' => $this->input->post('discount_figure'),
+		// 		'total_discount' => $this->input->post('discount_amount'),
+		// 		'grand_total' => $this->input->post('fgrand_total'),
+		// 		'created_at' => date('d-m-Y H:i:s')
+		// 		);
+		// 		$result_item = $this->Invoices_model->add_invoice_items_record($data2);
 				
-			$key++; }
-			$Return['result'] = $this->lang->line('xin_acc_order_updated');
-		} else {
-			//$Return['error'] = $this->lang->line('xin_error_msg');
-		}
+		// 	$key++; }
+		// 	$Return['result'] = $this->lang->line('xin_acc_order_updated');
+		// } else {
+		// 	//$Return['error'] = $this->lang->line('xin_error_msg');
+		// }
 		$Return['result'] = $this->lang->line('xin_acc_order_updated');
 		$this->output($Return);
 		exit;
